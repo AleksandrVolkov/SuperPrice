@@ -1,0 +1,76 @@
+<div class="container-fluid" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+
+      <div class="button">
+        <h2 style="color: white">Вход</h2>
+      </div>
+
+      <form>
+        <div class="alert alert-danger" *ngIf="alert" role="alert">
+          Неверный email или пароль
+        </div>
+
+        <div class="form-group">
+          <input type="email" required class="form-control" [(ngModel)]="user.login" name="login" aria-describedby="emailHelp" placeholder="Email" pattern="\S+@[a-z]+.[a-z]+">
+        </div>
+        
+        <div class="form-group">
+          <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Пароль">
+        </div>
+     <!--   <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+           <div class="form-group">
+            <label>Username</label>
+            <input class="form-control" #UserName="ngModel" name="UserName" [(ngModel)]="formModel.UserName" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" #Password="ngModel" name="Password" [(ngModel)]="formModel.Password" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8 offset-md-2">
+              <button type="submit" class="btn btn-lg btn-block" [disabled]="form.invalid">Login</button>
+            </div>
+          </div>
+        </form> -->
+        <div class="button" style="margin-bottom: 5px">
+          <a style="color: white" class="btn btn-primary" (click)="signIn()">Войти</a>&nbsp;
+          <a style="color: white" class="btn btn-primary" (click)="signInWithGoogle()">Войти через Google</a>
+<!--          <a style="color: white" class="btn btn-primary" (click)="test()">Test</a>-->
+        </div>
+
+      </form>
+    </div>
+
+    <div class="col-4"></div>
+  </div>
+
+</div>
+
+
+<!--<h1>Login</h1>-->
+<!--&lt;!&ndash;<app-menu></app-menu>&ndash;&gt;-->
+<!--<div class="container col-lg-6">-->
+<!--  <h1 class="text-center">Login</h1>-->
+<!--  <div class="card">-->
+<!--    <div class="card-body">-->
+<!--      <form class="form-group">-->
+<!--        <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>-->
+<!--        <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="username">User Name :</label>-->
+<!--          <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"-->
+<!--                 name="username">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="password">Password:</label>-->
+<!--          <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"-->
+<!--                 name="password">-->
+<!--        </div>-->
+<!--        <button (click)=handleLogin() class="btn btn-success">Login</button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

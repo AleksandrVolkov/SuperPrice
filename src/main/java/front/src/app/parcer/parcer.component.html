@@ -1,0 +1,154 @@
+<!--<button mat-raised-button color="primary">парсить сайты</button>-->
+
+<!--<div class="mywhitediv">-->
+<!--  <mat-form-field style="background-color: #FFFFFF">-->
+<!--    <mat-label color="primary">Выберите магазин</mat-label>-->
+<!--    <mat-select (valueChange)="changeFilter($event)">-->
+<!--      <mat-option value="citilink">Citilink</mat-option>-->
+<!--      <mat-option value="dns">DNS</mat-option>-->
+<!--      <mat-option value="all_shops">All shops</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+<!--</div>-->
+
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<div *ngIf="auth.isAdmin()">
+<div class="card mb-3" style="margin-bottom: 10px; padding: 10px">
+  <div style=" display:inline-block;">
+    <mat-form-field color="primary" style=" padding-right: 15px;border: #030303">
+      <mat-label>Выберите магазин</mat-label>
+      <mat-select multiple>
+        <mat-option value="citilink" (onSelectionChange)="changeSelected('citilink')">Citilink</mat-option>
+        <mat-option value="dns" (onSelectionChange)="changeSelected('dns')">DNS</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field color="primary" style=" padding-right: 15px;">
+      <mat-label>Выберите продукты</mat-label>
+      <mat-select multiple>
+        <mat-option value="pc" (onSelectionChange)="changeSelected('pc')">Системные блоки</mat-option>
+        <mat-option value="monitor " (onSelectionChange)="changeSelected('monitor')">Мониторы</mat-option>
+        <mat-option value="printer" (onSelectionChange)="changeSelected('printer')">Принтеры</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field color="primary" style=" padding-right: 15px;">
+      <input matInput placeholder="Введите cron выражение" [(ngModel)]="cron">
+    </mat-form-field>
+    <a target="_blank" href="http://www.cronmaker.com" style="color:#6610f2; text-decoration:none">Сайт на котором можно
+      составить cron выражение</a>
+  </div>
+  <div style=" display:inline-block;">
+    <p>
+      Миграция - {{parsStatus}}
+    </p>
+    <p>
+      Cron выражение - {{cronStatus}}.
+    </p>
+    <p>
+      Следующая дата миграции - {{cronDate}}.
+    </p>
+  </div>
+
+  <div class="cleared"></div>
+  <div style=" display:inline-block;">
+
+
+    <br>
+    <button mat-raised-button color="primary" (click)="getSelectedParseFields()"
+            style="float:left;margin-left:5px; " [disabled]="disabledStart">Запустить
+    </button>
+    <button mat-raised-button color="primary" (click)="parseStop()"
+            style="float:left;margin-left:5px; " [disabled]="disabledStop">Остановить
+    </button>
+    <button mat-raised-button color="primary" (click)="startCron()"
+            style="float:left;margin-left:5px; " [disabled]="cronStart">Запустить миграцию по расписанию
+    </button>
+    <button mat-raised-button color="primary" (click)="stopCron()"
+            style="float:left;margin-left:5px; " [disabled]="cronStop">Остановить миграцию по расписанию
+    </button>
+  </div>
+  <br>
+</div>
+
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Дата</th>
+      <th scope="col">Логин</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Распознано</th>
+      <th scope="col">Обновлено</th>
+      <th scope="col">Параметры миграции</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of products| paginate: config">
+      <td>{{item.datePars | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+      <td>{{item.userName }}</td>
+      <td>{{item.parseStatus}}</td>
+      <td>{{item.countParsedData}}</td>
+      <td>{{item.countUpdatedData}}</td>
+      <td>{{item.paramParsed}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+<div style="text-align:center; color:white">
+  <pagination-template #p="paginationApi" (pageChange)="config.currentPage = $event" (click)="change()">
+
+    <div class="custom-pagination">
+      <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+          <span *ngIf="!p.isFirstPage()" (click)="p.previous()" (click)="change()">
+            <
+              </span>
+      </div>
+      <div class="page-number" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+        <span (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{ page.label }}</span>
+        <div *ngIf="p.getCurrent() === page.value">
+          <span>{{ page.label }}</span>
+        </div>
+      </div>
+      <div class="pagination-next" [class.disabled]="p.isLastPage()">
+        <span *ngIf="!p.isLastPage()" (click)="p.next() " (click)="change()"> > </span>
+      </div>
+    </div>
+
+  </pagination-template>
+</div>
+</div>
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseCitilinkPC()">Спарсить Компьютеры в Citilink</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseCitilinkMonitor()">Спарсить Мониторы в Citilink</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseCitilinkPrinter()">Спарсить Принтеры в Citilink</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseCitilinkALL()">Спарсить все продукты в Citilink</button>-->
+<!--</p><br>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseDNSPC()">Спарсить Компьютеры в DNS</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseDNSMonitor()">Спарсить Мониторы в DNS</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseDNSPrinter()">Спарсить Принтеры в DNS</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseDNSALL()">Спарсить все продукты в DNS</button>-->
+<!--</p><br>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseALLShop()">Спарсить все продукты</button>-->
+<!--</p><br>-->
+<!--<p>-->
+<!--  <button mat-raised-button color="primary" (click)="parseStop()">Остановить парсинг</button>-->
+<!--</p>-->

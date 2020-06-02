@@ -1,0 +1,112 @@
+<div class="card mb-12" style="margin-bottom: 10px; padding: 10px">
+  <form>
+    <h4>Выберите характеристики монитора</h4>
+    <div class="form-row">
+
+      <div class="col">
+
+
+        <p><b>Размер экрана</b></p>
+        <mat-form-field>
+          <mat-label>Выберите</mat-label>
+          <mat-select multiple >
+            <mat-option *ngFor="let size of monitorSize; index as i"
+                        (onSelectionChange)="screenSizeChangeSelect(monitorSize[i])">
+              {{monitorSize[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p><b>Максимальное разрешение</b></p>
+        <mat-form-field>
+          <mat-label>Выберите разрешение</mat-label>
+          <mat-select multiple >
+            <mat-option *ngFor="let core of initFilter.screenResolution; index as i"
+                        (onSelectionChange)="screenResolutionTypeChangeSelect(initFilter.screenResolution[i])">
+              {{initFilter.screenResolution[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col">
+        <p><b>Тип матрицы экрана</b></p>
+        <mat-form-field>
+          <mat-label>Выберите матрицу</mat-label>
+          <mat-select multiple >
+            <mat-option *ngFor="let core of initFilter.matrixType; index as i"
+                        (onSelectionChange)="matrixTypeChangeSelect(initFilter.matrixType[i])">
+              {{initFilter.matrixType[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p><b>Макс. частота кадров, Гц</b></p>
+
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="От" type="number" min="{{initFilter.minScreenFrequency}}" max="{{initFilter.maxScreenFrequency}}" [(ngModel)]="selectedFilter.minScreenFrequency"  name="minScreenFrequency">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="До" type="number" min="{{initFilter.minScreenFrequency}}" max="{{initFilter.maxScreenFrequency}}" [(ngModel)]="selectedFilter.maxScreenFrequency"  name="maxScreenFrequency">
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col">
+        <h5>3. Доп. настройки</h5>
+        <hr>
+
+        <p><b>Цена за единицу товара</b></p>
+
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="От" type="number" min="{{initFilter.minPrice}}" max="{{initFilter.maxPrice}}" [(ngModel)]="selectedFilter.minPrice"  name="minPrice">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="До" type="number" min="{{initFilter.minPrice}}" max="{{initFilter.maxPrice}}" [(ngModel)]="selectedFilter.maxPrice" name="maxPrice">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!--        <p><b>Общяя сумма</b></p>-->
+
+        <!--        <div class="form-row">-->
+        <!--          <div class="col">-->
+        <!--            <mat-form-field>-->
+        <!--              <input matInput placeholder="От" type="number" min="1">-->
+        <!--            </mat-form-field>-->
+        <!--          </div>-->
+
+        <!--          <div class="col">-->
+        <!--            <mat-form-field>-->
+        <!--              <input matInput placeholder="До" type="number" min="1">-->
+        <!--            </mat-form-field>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+
+      </div>
+
+    </div>
+
+    <div align="center">
+      <button mat-raised-button color="primary" (click)="getFiltredMonitorProducts()">Найти подходящие варианты</button>
+    </div>
+
+  </form>
+
+</div>
+
+

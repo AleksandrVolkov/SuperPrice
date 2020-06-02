@@ -1,0 +1,29 @@
+.mywhitediv {
+  background-color: white;
+}
+
+.custom-pagination .page-number{
+  display: inline-block;
+  /* padding: 5px 12px; */
+  background: #715fc49c;
+  margin: 0px 4px;
+  border-radius: 25px;
+}
+
+.page-number.current{
+  background: #dd5b5b!important;
+  border: 4px solid #03ece1;
+}
+
+.page-number span{
+  display: block;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.pagination-previous,.pagination-next{
+  display: inline-block;
+  font-weight: white;
+}

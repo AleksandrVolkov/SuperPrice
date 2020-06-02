@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">SuperPrice</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item dropdown">
+        <a style="color: ghostwhite" class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Розничный каталог</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="home/products">Системные блоки</a>
+          <a class="dropdown-item" href="home/monitor">Мониторы</a>
+          <a class="dropdown-item" href="home/printers">Принтеры</a>
+        </div>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="home/filtred_products">Шаблонизатор</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="home/backet" matBadge={{this.per}} matBadgeColor="warn"  matBadgeSize="small">Корзина</a>
+       
+
+      </li>
+      <li class="nav-item active"  >
+        <a *ngIf="auth.isUser()" class="nav-link" href="home/cabinet">Личный кабинет</a>
+      </li>
+
+
+      <li class="nav-item active"  >
+        <a *ngIf="auth.isAdmin()" class="nav-link" href="home/admin">Панель администратора</a>
+      </li>
+
+    </ul>
+  </div>
+  <div>
+
+    <span>
+<!--      <img src="{{photo}}" style="max-height: 50px; max-width: 50px;">-->
+      <font size="3" color="white" face="Arial" *ngIf="auth.logIn">Пользователь : {{auth.username}}  </font></span>
+    <a *ngIf="!auth.logIn" style="color: ghostwhite" href="home/login" >Войти</a>&nbsp;
+    <a *ngIf="!auth.logIn" style="color: ghostwhite" href="home/register" >Зарегистрироваться</a>
+    <a *ngIf="auth.logIn" style="color: ghostwhite" (click)="auth.logout()" href="home/login" >Выйти</a>
+
+</div>
+</nav>
+
+<div class="container-fluid" style="margin-top:80px">
+    <div class="col-md-10 offset-md-1">
+      <router-outlet></router-outlet>
+    </div>
+</div>

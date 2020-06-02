@@ -1,0 +1,43 @@
+<mat-tab-group>
+  <mat-tab label="Все пользователи">
+    <table class="table">
+      <tbody>
+      <tr *ngFor="let allUser of allUsers; index as i">
+        <td scope="row">{{i + 1}}</td>
+        <td>{{allUsers[i].email}}</td>
+        <td>{{allUsers[i].userName}}</td>
+        <td>{{allUsers[i].roles}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <mat-tab label="Снять права администратора">
+    <table class="table">
+      <tbody>
+      <tr *ngFor="let admin of admins; index as i">
+        <td scope="row">{{i + 1}}</td>
+        <td>{{admins[i].email}}</td>
+        <td>{{admins[i].userName}}</td>
+        <td> <button mat-raised-button (click)="deleteAdmin(admins[i])" >Снять права администратора</button> </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <mat-tab label="Добавить права администратора">
+    <table class="table">
+      <tbody>
+      <tr *ngFor="let user of users; index as i">
+        <td scope="row">{{i + 1}}</td>
+        <td>{{users[i].email}}</td>
+        <td>{{users[i].userName}}</td>
+        <td> <button mat-raised-button (click)="addAdmin(users[i])">Сделать администратором</button> </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </mat-tab>
+
+</mat-tab-group>

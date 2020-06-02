@@ -1,0 +1,24 @@
+<div class="wrapper" *ngIf="auth.isAdmin()">
+    <div class="wrapped-div loginpanel">
+
+      <div class="tab-header log">
+        
+        <!-- <h2 routerLink='/home/admin/users_manager' routerLinkActive='active'>Управление пользователями</h2>
+       <h2 routerLink='/home/admin/orders' routerLinkActive='active'>Заказы</h2>
+       <h2 routerLink='/home/admin/graphic' routerLinkActive='active'>Графики</h2>
+        <h2 routerLink='/home/admin/parcer' routerLinkActive='active'>Миграция данных</h2> -->
+        <!-- <h2 routerLink='/home/admin/timetable' routerLinkActive='active'>Расписание парсинга</h2> -->
+        <div class="d-flex text-white">
+          <div class="p-2 flex-fill "><h2 routerLink='/home/admin/users_manager' routerLinkActive='active'>Управление пользователями</h2></div>
+          <div class="p-2 flex-fill "><h2 routerLink='/home/admin/orders' routerLinkActive='active'>Заказы</h2></div>
+          <div class="p-2 flex-fill "><h2 routerLink='/home/admin/graphic' routerLinkActive='active'>Графики</h2></div>
+          <div class="p-2 flex-fill "><h2 routerLink='/home/admin/parcer' routerLinkActive='active'>Миграция данных</h2></div>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>

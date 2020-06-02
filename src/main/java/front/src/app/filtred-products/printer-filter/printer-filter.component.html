@@ -1,0 +1,134 @@
+<div class="card mb-12" style="margin-bottom: 10px; padding: 10px">
+  <form>
+    <h4>Выберите характеристики принтера</h4>
+    <div class="form-row">
+
+      <div class="col">
+
+        <p><b>Технология печати</b></p>
+        <mat-form-field>
+          <mat-label>Выберите</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let type of initFilter.printerType; index as i"
+            (onSelectionChange)="printerTypeSelectionChange(initFilter.printerType[i])">
+              {{initFilter.printerType[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <p><b>Цветность печати</b></p>
+        <mat-form-field>
+          <mat-label>Выберите</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let color of initFilter.color; index as i"
+                        (onSelectionChange)="colorSelectionChange(initFilter.color[i])">
+              {{initFilter.color[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p><b>Формат печати</b></p>
+
+        <mat-form-field>
+          <mat-label>Выберите</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let format of initFilter.format; index as i"
+                        (onSelectionChange)="formatSelectionChange(initFilter.format[i])">
+              {{initFilter.format[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col">
+
+        <p><b>Скорость ч/б печати (А4)</b></p>
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="От" type="number" min="{{initFilter.minSpeed}}" max="{{initFilter.maxSpeed}}" [(ngModel)]="selectedFilter.minSpeed" name="minSpeed">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="До" type="number" min="{{initFilter.minSpeed}}" max="{{initFilter.maxSpeed}}" [(ngModel)]="selectedFilter.maxSpeed" name="maxSpeed">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <p><b>Автоматическая двусторонняя печать</b></p>
+
+        <mat-form-field>
+          <mat-label>Выберите</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let side of initFilter.twoSidedPrinting; index as i"
+                        (onSelectionChange)="twoSidedPrintingSelectionChange(initFilter.twoSidedPrinting[i])">
+              {{initFilter.twoSidedPrinting[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col">
+        <h5>3. Доп. настройки</h5>
+        <hr>
+<!--        <p><b>Количество принтеров</b></p>-->
+
+<!--        <div class="form-row">-->
+<!--          <div class="col">-->
+<!--            <mat-form-field>-->
+<!--              <input matInput placeholder="Введите количество" type="number" min="1">-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <p><b>Цена за единицу товара</b></p>
+
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="От" type="number" min="{{initFilter.minPrice}}" max="{{initFilter.maxPrice}}" [(ngModel)]="selectedFilter.minPrice"  name="minPrice">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="До" type="number" min="{{initFilter.minPrice}}" max="{{initFilter.maxPrice}}" [(ngModel)]="selectedFilter.maxPrice" name="maxPrice">
+            </mat-form-field>
+          </div>
+        </div>
+
+<!--        <p><b>Общяя сумма</b></p>-->
+
+<!--        <div class="form-row">-->
+<!--          <div class="col">-->
+<!--            <mat-form-field>-->
+<!--              <input matInput placeholder="От" type="number" min="1">-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+
+<!--          <div class="col">-->
+<!--            <mat-form-field>-->
+<!--              <input matInput placeholder="До" type="number" min="1">-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+      </div>
+
+    </div>
+
+    <div align="center">
+      <button mat-raised-button color="primary" (click)="getFiltredPrinterProducts()">Найти подходящие варианты</button>
+    </div>
+
+  </form>
+
+</div>
+

@@ -1,0 +1,30 @@
+<div style="text-align:center" *ngIf="auth.isAdmin()">
+
+  <button (click)="FirstGraph()">Количество заказов</button>
+  <button (click)="SecondGraph()">Сумма Продаж</button>
+  <div>
+    <div class="mat-app-background basic-container">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>От</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" (dateChange)="someMethodName($event)" [(ngModel)] = "myDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>До</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" (dateChange)="someMethodName($event)" [(ngModel)] = "myDate1" >
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+  </div>
+</div>
+
+    <canvas id="lineChart" *ngIf="this.flag"></canvas>
+    <canvas id="lineChart2" *ngIf="!this.flag"></canvas>
+<!--    <progress value="0" id="animationProgress" max="1"  style="width: 100%"></progress>-->
+    <!-- <canvas id="lineChart1"></canvas>
+    <progress hidden="true" id="animationProgress1" max="1" value="0" style="width: 100%"></progress> -->
+
+  </div>

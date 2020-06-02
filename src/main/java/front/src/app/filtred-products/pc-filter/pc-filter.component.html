@@ -1,0 +1,119 @@
+<div class="card mb-12" style="margin-bottom: 10px; padding: 10px">
+  <form>
+    <h4>Выберите характеристики системного блока</h4>
+    <div class="form-row">
+
+      <div class="col">
+        <h5>1. Оперативная память</h5>
+        <hr>
+
+        <p><b>Тип</b></p>
+        <mat-form-field>
+          <mat-label>Выберите тип</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let ram of initFilter.ramSize; index as i" (onSelectionChange)="raxSizeChangeSelect(initFilter.ramSize[i])">
+              {{initFilter.ramSize[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p><b>Размер</b></p>
+        <mat-form-field>
+          <mat-label>Выберите размер</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let ram of initFilter.ramType; index as i" (onSelectionChange)="raxTypeChangeSelect(initFilter.ramType[i])">{{initFilter.ramType[i]}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col">
+        <h5>2. Процессор</h5>
+        <hr>
+        <p><b>Частота процессора, МГц</b></p>
+
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="От" type="number" min="{{initFilter.minFreq}}" max="{{initFilter.maxFreq}}" [(ngModel)]="selectedFilter.minFreq"  name="minFreq">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="До" type="number" min="{{initFilter.minFreq}}" max="{{initFilter.maxFreq}}" [(ngModel)]="selectedFilter.maxFreq"  name="maxFreq">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <p><b>Количество ядер</b></p>
+
+        <mat-form-field>
+          <mat-label>Выберите</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let core of initFilter.cores; index as i"
+                        (onSelectionChange)="coresChangeSelect(initFilter.cores[i])">
+              {{initFilter.cores[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col">
+        <h5>3. Доп. настройки</h5>
+        <hr>
+        <!--        <p><b>Количество системных блоков</b></p>-->
+
+        <!--        <div class="form-row">-->
+        <!--          <div class="col">-->
+        <!--            <mat-form-field>-->
+        <!--              <input matInput placeholder="Введите количество" type="number" min="1">-->
+        <!--            </mat-form-field>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+        <p><b>Цена за единицу товара</b></p>
+
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="От" type="number" min="{{initFilter.minPrice}}" max="{{initFilter.maxPrice}}" [(ngModel)]="selectedFilter.minPrice"  name="minPrice">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="До" type="number" min="{{initFilter.minPrice}}" max="{{initFilter.maxPrice}}" [(ngModel)]="selectedFilter.maxPrice" name="maxPrice">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!--        <p><b>Общяя сумма</b></p>-->
+
+        <!--        <div class="form-row">-->
+        <!--          <div class="col">-->
+        <!--            <mat-form-field>-->
+        <!--              <input matInput placeholder="От" type="number" min="1">-->
+        <!--            </mat-form-field>-->
+        <!--          </div>-->
+
+        <!--          <div class="col">-->
+        <!--            <mat-form-field>-->
+        <!--              <input matInput placeholder="До" type="number" min="1">-->
+        <!--            </mat-form-field>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+      </div>
+
+    </div>
+
+    <div align="center">
+      <button mat-raised-button color="primary" (click)="getFiltredPcProducts()">Найти подходящие варианты</button>
+    </div>
+
+  </form>
+
+</div>
+

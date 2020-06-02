@@ -1,0 +1,38 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title (click)="get()">
+          Отзывы и комментарии
+        </mat-panel-title>
+        <mat-panel-description>
+          {{panelOpenState ? 'Закрыть' : 'Открыть'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <div mat-subheader>Комментарии</div>
+        <mat-list-item *ngFor="let item1 of this.comments">
+          <mat-icon mat-list-icon>Comments</mat-icon>
+          <div mat-line>{{item1.userName}} :
+            {{item1.comments}}</div>
+          <div mat-line> {{item1.date | date}} </div>
+          <!-- <span>
+            <button mat-icon-button color="green" aria-label="Example icon-button with a heart icon" (click)="like1(item1)">
+              <mat-icon>thumb_up_alt</mat-icon>      {{item1.pluslike}}
+            </button>
+            <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="dislike1(item1)">
+              <mat-icon>thumb_down_alt</mat-icon>    {{item1.dislike}}
+            </button>
+          </span> -->
+        </mat-list-item>
+        <div *ngIf=this.auth.isUser()>
+        <button mat-button *ngIf=!this.bool (click)="flag()" >Написать комментарий</button>
+        <div *ngIf=this.bool class="form-group">
+          <label for="exampleFormControlTextarea1" required style="color: dimgrey">Оставьте свой комментарий</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Введите" rows="3" [(ngModel)]="this.text" maxlength=250 required></textarea>
+          <button mat-button (click)="postComment()">Отправить</button>
+        </div>
+      </div>
+    </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>

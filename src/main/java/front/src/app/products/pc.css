@@ -1,0 +1,47 @@
+.custom-pagination .page-number{
+    display: inline-block;
+    /* padding: 5px 12px; */
+    background: #715fc49c;
+    margin: 0px 4px;
+    border-radius: 25px;
+}
+
+.page-number.current{
+    background: #dd5b5b!important;
+    border: 4px solid #03ece1;
+}
+
+.page-number span{
+    display: block;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.pagination-previous,.pagination-next{
+    display: inline-block;
+    font-weight: white;
+}
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
